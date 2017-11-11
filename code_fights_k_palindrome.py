@@ -13,6 +13,16 @@ def add(cache, key, value):
 def remove(s, i):
 	return s[:i] + s[i+1:]
 
+def is_palindrome(s):
+	start = 0 
+	end = len(s) - 1 
+
+	while start < end: 
+		if s[start] != s[end]:
+			return False 
+		start += 1 
+		end -= 1 
+	return True
 
 def k_palindrome_helper(s, char_removed, k, cache):
 	if s in cache: 
@@ -33,5 +43,5 @@ def k_palindrome_helper(s, char_removed, k, cache):
 
 def k_palindrome(s, k):
 	cache = {}
-	k_palindrome_helper(s, 0, k, cache)
+	return k_palindrome_helper(s, 0, k, cache)
 
