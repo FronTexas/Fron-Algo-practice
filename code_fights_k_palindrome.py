@@ -1,7 +1,9 @@
 '''
 https://codefights.com/interview-practice/task/x3rJpdZGEcjmYtDqv
 
-A string is a k-palindrome if it can be transformed into a palindrome by removing any amount of characters from 0 to k. Your task is to determine whether the given string s is a k-palindrome.
+A string is a k-palindrome if it can be transformed into a palindrome 
+by removing any amount of characters from 0 to k. 
+Your task is to determine whether the given string s is a k-palindrome.
 
 '''
 def add(cache, key, value):
@@ -24,6 +26,12 @@ def is_palindrome(s):
 		end -= 1 
 	return True
 
+def k_palindrome_dp(s):
+	'''
+		Solve the subproblem first meaning, 
+		figure out all the k_scores for every single sub problem and then solve the main problem
+	'''
+
 def k_palindrome_helper(s, char_removed, k, cache):
 	if s in cache: 
 		return k - char_removed in cache[s]
@@ -44,4 +52,7 @@ def k_palindrome_helper(s, char_removed, k, cache):
 def k_palindrome(s, k):
 	cache = {}
 	return k_palindrome_helper(s, 0, k, cache)
+
+print k_palindrome('abrarbra', 1)
+print k_palindrome('adbcdbacdb', 2)
 
