@@ -28,9 +28,17 @@ def is_palindrome(s):
 
 def k_palindrome_dp(s):
 	'''
-		Solve the subproblem first meaning, 
+		Solve the subproblem first, meaning, 
 		figure out all the k_scores for every single sub problem and then solve the main problem
+
+		Create a 2d matrix where the ith index indicates the index of ith character of s and 
+		jth index indicates which character is removed from s 
+
+		(i, j) indicates how many character that if removed can make the string palindrome
 	'''
+
+
+
 
 def k_palindrome_helper(s, char_removed, k, cache):
 	if s in cache: 
@@ -51,8 +59,11 @@ def k_palindrome_helper(s, char_removed, k, cache):
 
 def k_palindrome(s, k):
 	cache = {}
-	return k_palindrome_helper(s, 0, k, cache)
+	answer = k_palindrome_helper(s, 0, k, cache)
+	print cache['ara']
+	return answer
+
 
 print k_palindrome('abrarbra', 1)
-print k_palindrome('adbcdbacdb', 2)
+# print k_palindrome('adbcdbacdb', 2)
 
