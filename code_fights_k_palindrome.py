@@ -30,11 +30,16 @@ def k_palindrome_dp(s):
 	'''
 		Solve the subproblem first, meaning, 
 		figure out all the k_scores for every single sub problem and then solve the main problem
+		iteration #2:
+			Create a 2d matrix where the ith index indicates the index of ith character of s and 
+			jth index indicates which character is removed from s 
 
-		Create a 2d matrix where the ith index indicates the index of ith character of s and 
-		jth index indicates which character is removed from s 
+			(i, j) indicates how many character that if removed can make the string palindrome
 
-		(i, j) indicates how many character that if removed can make the string palindrome
+		iteration #3
+			Come up with all possible 1 character strings, 2 character strings, 3 character strings,....
+			and for each n character strings, the solution was built on the previous solution of n-1 character strings. 
+			The complexity is still bad since it's gonna be n + n^2 + n^3 + ..... n^n which is still exponential.....
 	'''
 
 
