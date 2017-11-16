@@ -40,7 +40,11 @@ def k_palindrome_dp(s):
 			Come up with all possible 1 character strings, 2 character strings, 3 character strings,....
 			and for each n character strings, the solution was built on the previous solution of n-1 character strings. 
 			The complexity is still bad since it's gonna be n + n^2 + n^3 + ..... n^n which is still exponential.....
+
+		TODO iteration #4
+			Try to solve edit distance algo problem
 	'''
+	
 
 
 
