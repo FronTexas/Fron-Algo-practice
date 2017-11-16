@@ -1,3 +1,8 @@
+def replace(s, idx,ch):
+	_s = list(s)
+	_s[idx] = ch
+	return ''.join(_s)
+
 def find_smallest_edit_distance(s1,s2, cache):
 	
 	if (s1, s2) in cache[(s1, s2)]: return cache[(s1, s2)]
@@ -15,7 +20,7 @@ def find_smallest_edit_distance(s1,s2, cache):
 		tail_1 -= 1
 		tail_2 -= 1
 
-	if tail_1 == 0 and tail_2 == 0: return 0
+	if tail_1 == -1 and tail_2 == -1: return 0
 
 	insert = min(find_smallest_edit_distance(s2[0] + s1, s2), find_smallest_edit_distance(s1 + s2[-1], s2))
 	remove = min(find_smallest_edit_distance(s1[head_1 + 1:], s2), find_smallest_edit_distance(s1[:tail_1], s2))
@@ -23,7 +28,7 @@ def find_smallest_edit_distance(s1,s2, cache):
 
 	cache[(s1, s2)] = min(insert, remove, replace)
 
-	return min(insert, remove, replace)
+	return cache[(s1, s2)] 
 
 
 
