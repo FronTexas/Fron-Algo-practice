@@ -1,38 +1,33 @@
-def replace(s, idx,ch):
-	_s = list(s)
-	_s[idx] = ch
-	return ''.join(_s)
-
-def find_smallest_edit_distance(s1,s2, cache):
-	
-	if (s1, s2) in cache[(s1, s2)]: return cache[(s1, s2)]
-
-	head_1, head_2 = 0, 0 
-	tail_1, tail_2 = len(s1) - 1, len(s2) - 1
-
-	while head_1 < len(s1) and head_2 < len(s2) and s1[head_1] == s2[head_2]:
-		head_1 += 1
-		head_2 += 1
-
-	if head_1 == len(s1) and head_2 == len(s2): return 0
-	
-	while tail_1 >= 0 and tail_2 >= 0 and s1[tail_1] == s2[tail_2]:
-		tail_1 -= 1
-		tail_2 -= 1
-
-	if tail_1 == -1 and tail_2 == -1: return 0
-
-	insert = min(find_smallest_edit_distance(s2[0] + s1, s2), find_smallest_edit_distance(s1 + s2[-1], s2))
-	remove = min(find_smallest_edit_distance(s1[head_1 + 1:], s2), find_smallest_edit_distance(s1[:tail_1], s2))
-	replace = min(find_smallest_edit_distance(replace(s1, 0, s2[0]), s2), find_smallest_edit_distance(replace(s1, len(s1) - 1, s2[-1]), s2))
-
-	cache[(s1, s2)] = min(insert, remove, replace)
-
-	return cache[(s1, s2)] 
-
-
-
-
-
-
-
+# A Dynamic Programming based Python program for edit
+# distance problem
+def editDistDP(str1, str2, m, n):
+    # Create a table to store results of subproblems
+    dp = [[0 for x in range(n+1)] for x in range(m+1)]
+ 
+    # Fill d[][] in bottom up manner
+    for i in range(m+1):
+        for j in range(n+1):
+ 
+            # If first string is empty, only option is to
+            # isnert all characters of second string
+            if i == 0:
+                dp[i][j] = j    # Min. operations = j
+ 
+            # If second string is empty, only option is to
+            # remove all characters of second string
+            elif j == 0:
+                dp[i][j] = i    # Min. operations = i
+ 
+            # If last characters are same, ignore last char
+            # and recur for remaining string
+            elif str1[i-1] == str2[j-1]:
+                dp[i][j] = dp[i-1][j-1]
+ 
+            # If last character are different, consider all
+            # possibilities and find minimum
+            else:
+                dp[i][j] = 1 + min(dp[i][j-1],        # Insert
+                                   dp[i-1][j],        # Remove
+                                   dp[i-1][j-1])    # Replace
+ 
+    return dp[m][n]
