@@ -27,8 +27,6 @@ def get_kth_node_after_given_node(node, k):
 	return current_node
 
 def reverse_k_nodes_and_return_head_and_tail(node, k):
-	if not has_k_nodes_after_node(node, k): return
-
 	# the "first" node will be the new tail
 	tail = node
 
