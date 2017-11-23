@@ -35,6 +35,8 @@ def reverse_k_nodes_and_return_head_and_tail(node, k):
 	current_node = node
 
 	kth_node = get_kth_node_after_given_node(node, k)
+
+	# the tail.next will be the kth_node after node 
 	prev = kth_node
 
 	while number_of_reverses_left > 0: 
@@ -42,8 +44,8 @@ def reverse_k_nodes_and_return_head_and_tail(node, k):
 		
 		current_node.next = prev
 		
-		prev = current 
-		current = next_node
+		prev = current_node 
+		current_node = next_node
 		
 		number_of_reverses_left -= 1
 	head = prev 
@@ -51,22 +53,22 @@ def reverse_k_nodes_and_return_head_and_tail(node, k):
 
 
 def reverseNodesInKGroups(l, k):
-	ZEROTH_ITERATION = 0
 	current_node = l 
-	number_of_iteration = 0
-	new_head, prev_tail = None
+	is_first_iteration = True
+	new_head = None
+	prev_tail = None
 
-	while has_k_nodes_after_node(current_node):
+	while has_k_nodes_after_node(current_node, k):
 		head, tail = reverse_k_nodes_and_return_head_and_tail(current_node, k)
 		
 		if prev_tail:
 			prev_tail.next = head
 
-		if number_of_iteration == ZEROTH_ITERATION: 
+		if is_first_iteration: 
+			is_first_iteration = False
 			new_head = head 
 
 		prev_tail = tail
 		current_node = tail.next
-		number_of_iteration += 1
 	
 	return new_head
