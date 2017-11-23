@@ -61,7 +61,7 @@ def reverseNodesInKGroups(l, k):
 	while has_k_nodes_after_node(current_node, k):
 		head, tail = reverse_k_nodes_and_return_head_and_tail(current_node, k)
 		
-		if prev_tail:
+		if prev_tail != None:
 			prev_tail.next = head
 
 		if is_first_iteration: 
