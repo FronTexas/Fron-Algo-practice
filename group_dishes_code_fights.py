@@ -14,6 +14,10 @@ class IngridientsToDishDict:
 				self.ingridients_to_dish[ingridient].sort()
 			else: 
 				self.ingridients_to_dish[ingridient] = [dish_name]
+	
+	def get_dictionary(self):
+		return self.ingridients_to_dish
+
 
 class DictToArrayService: 
 	def convert_dict_to_2d_array(self, d):
@@ -34,7 +38,7 @@ def groupingDishes(dishes):
 	for dish in dishes: 
 		ingridients_to_dish.add_new_mappings_between_ingridient_and_dish_name(dish.ingridients, dish.name)
 
-	dishes_grouping_array = DictToArrayService().convert_dict_to_2d_array(ingridients_to_dish.ingridients_to_dish)
+	dishes_grouping_array = DictToArrayService().convert_dict_to_2d_array(ingridients_to_dish.get_dictionary())
 	return sorted(remove_from_array_if_length_less_than_three(dishes_grouping_array))
 
 
