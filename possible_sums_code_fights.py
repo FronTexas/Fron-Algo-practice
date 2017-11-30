@@ -1,5 +1,15 @@
 # https://codefights.com/interview-practice/task/rMe9ypPJkXgk3MHhZ
 
+
+'''
+	Approach: 
+		Function signature f(sum_so_far, unique_sum_set, coins)
+
+		do a breadth first iteration through the coins: 
+			add each coin to sum_so_far, create new coins with 
+			the coin removed, put the coin back to coins, continue breadth first iteration
+'''
+
 class uniqueSum: 
 	def __init__(self):
 		self.unique_sum = set()
