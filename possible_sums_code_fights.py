@@ -19,12 +19,11 @@ class uniqueSum:
 
 	def build_all_possible_sum_recursive(self, sum_so_far, coin_to_quantity):
 		for coin in coin_to_quantity:
-			if coin_to_quantity[coin] > 0: 
-				coin_to_quantity[coin] -= 1
-				if sum_so_far + coin > 0:
-					self.unique_sum.add(sum_so_far + coin)
-				self.build_all_possible_sum_recursive(sum_so_far + coin, coin_to_quantity)
-				coin_to_quantity[coin] += 1
+			if coin_to_quantity[coin] <= 0: continue 
+			coin_to_quantity[coin] -= 1
+			self.unique_sum.add(sum_so_far + coin)
+			self.build_all_possible_sum_recursive(sum_so_far + coin, coin_to_quantity)
+			coin_to_quantity[coin] += 1
 
 	def get(self):
 		return self.unique_sum
@@ -32,9 +31,15 @@ class uniqueSum:
 
 
 def possibleSums(coins, quantity):
-	coin_to_quantity = {coins[i] : quantity[i] for i in range(len(coins))}
+	coin_to_quantity = {coins[i] : 0 for i in range(len(coins))}
+	for i, coin in enumerate(coins):
+		coin_to_quantity[coin] += quantity[i]
+
 	unique_sum = uniqueSum()
 	unique_sum.build_all_possible_sum(coin_to_quantity)
 	return len(unique_sum.get())
 
 print possibleSums([10,50,100],[1,2,1])
+print possibleSums([10, 50, 100, 500], [5, 3, 2, 2])
+print possibleSums([1, 1, 1, 1, 1], [9, 19, 18, 12, 19])
+print possibleSums([3, 1, 1], [111, 84, 104])
