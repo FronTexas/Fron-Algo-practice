@@ -15,10 +15,7 @@ def findProfession(level, pos):
 		
 		# go right
 		if mid < pos: 
-			if current_parent == 'Engineer': 
-				current_parent = 'Doctor'
-			elif current_parent == 'Doctor': 
-				current_parent = 'Engineer'
+			current_parent = 'Doctor' if current_parent == 'Engineer' else 'Engineer'
 			start = mid + 1 
 		else: 
 			# go left
