@@ -4,7 +4,7 @@
 
 def findProfession(level, pos):
 	start = 0 
-	end = 2**(level - 1) - 1
+	end = 2**(level) - 1
 
 	# convert to zero based index because that's the right way to index
 	level -= 1 
