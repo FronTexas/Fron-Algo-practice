@@ -1,3 +1,6 @@
+'''
+https://codefights.com/interview-practice/task/Ki9zRh5bfRhH6oBau/description
+'''
 class KMP:
 	def partial(self, pattern):
 		""" Calculate partial match table: String -> [Int]"""
