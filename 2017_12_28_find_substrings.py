@@ -29,6 +29,9 @@ def insert_at(i, w, c):
 	return w[:i] + c + w[i:]
 
 def findSubstrings(words, parts):
+	'''
+		Try using Tries instead
+	'''
 	kmp = KMP()
 	answer = []
 
